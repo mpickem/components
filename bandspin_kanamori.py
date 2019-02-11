@@ -25,6 +25,7 @@ if (len(args) != 1):
 ndim = int(args[0])
 
 mylist = []
+mydict = {}
 
 for i in xrange(ndim):
   for j in xrange(ndim):
@@ -55,10 +56,15 @@ for i in xrange(ndim):
 
                 print(i,j,k,l, s1, s2, s3, s4, spinband2index(ndim,tuple((i,j,k,l)),tuple((s1,s2,s3,s4))))
                 mylist.append(spinband2index(ndim,tuple((i,j,k,l)),tuple((s1,s2,s3,s4))))
+                mydict[spinband2index(ndim,tuple((i,j,k,l)),tuple((s1,s2,s3,s4)))] = tuple((i,j,k,l,s1,s2,s3,s4))
+
+
+for key in sorted(mydict.iterkeys()):
+  print(key, mydict[key])
 
 mylist.sort()
 np.savetxt('indices_kanamori.dat', mylist, fmt='%i')
-print(mylist)
+# print(mylist)
 print('Number of elements: ', len(mylist), ' = 6 * (3*nband**2 - 2*nband)')
 print('Kanamori max: ',2**4*ndim**4)
 print('indices_kanamori.dat created.')
