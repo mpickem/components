@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 
-from __future__ import print_function, division, absolute_import
 import numpy as np
 import h5py
 import sys
@@ -27,10 +26,10 @@ ndim = int(args[0])
 mylist = []
 mydict = {}
 
-for i in xrange(ndim):
-  for j in xrange(ndim):
-    for k in xrange(ndim):
-      for l in xrange(ndim):
+for i in range(ndim):
+  for j in range(ndim):
+    for k in range(ndim):
+      for l in range(ndim):
 
         # kanamori interaction; xxxx xxyy xyyx xyxy
         if (i==j and k==l): #xxyy
@@ -42,10 +41,10 @@ for i in xrange(ndim):
         else:
           continue
 
-        for s1 in xrange(2):
-          for s2 in xrange(2):
-            for s3 in xrange(2):
-              for s4 in xrange(2):
+        for s1 in range(2):
+          for s2 in range(2):
+            for s3 in range(2):
+              for s4 in range(2):
 
                 if (s1==s2 and s3==s4): # sigma sigma'
                   pass
@@ -59,7 +58,7 @@ for i in xrange(ndim):
                 mydict[spinband2index(ndim,tuple((i,j,k,l)),tuple((s1,s2,s3,s4)))] = tuple((i,j,k,l,s1,s2,s3,s4))
 
 
-for key in sorted(mydict.iterkeys()):
+for key in sorted(mydict.keys()):
   print(key, mydict[key])
 
 mylist.sort()
